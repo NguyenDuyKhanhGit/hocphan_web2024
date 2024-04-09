@@ -1,0 +1,38 @@
+<?php include_once 'header_admin.php'; ?>
+<?php include_once 'sidebar_admin.php'; ?>
+<?php include_once 'controller/brand.php' ?>
+<?php
+$brand = new brand();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $brandName = $_POST['brandName'];
+    $insertBrand = $brand->insert_brand($brandName);
+}
+?>
+<div class="grid_10">
+    <div class="box round first grid">
+        <h2>Thêm danh thương hiệu</h2>
+
+        <div class="block copyblock">
+            <?php
+            if (isset($insertBrand)) {
+                echo $insertBrand;
+            }
+            ?>
+            <form action="brandadd.php" method="post">
+                <table class="form">
+                    <tr>
+                        <td>
+                            <input type="text" name="brandName" placeholder="Làm ơn thêm thương hiệu sản phẩm..." class="medium" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="submit" Value="Save" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<?php include_once 'footer_admin.php'; ?>
